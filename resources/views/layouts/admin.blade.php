@@ -63,10 +63,13 @@
                                 <a href="{{ route('admin.buku') }}">Data Buku</a>
                             </li>
                             <li class="submenu-item ">
+                                <a href="{{ route('admin') }}">Administrator</a>
+                            </li>
+                            <li class="submenu-item ">
                                 <a href="#">Data Penerbit</a>
                             </li>
                             <li class="submenu-item ">
-                                <a href="#">Data Peminjaman</a>
+                                <a href="{{ route('admin.peminjaman') }}">Data Peminjaman</a>
                             </li>
                             <li class="submenu-item ">
                                 <a href="#">Data Pengembalian</a>

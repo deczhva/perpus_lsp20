@@ -1,5 +1,4 @@
 @extends('layouts.admin')
-
 @section('content')
     <div class="row">
         <div class="col-6 col-md-3">
@@ -13,7 +12,7 @@
                         </div>
                         <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                             <h6 class="text-muted font-semibold">Jumlah Buku</h6>
-                            <h6 class="font-extrabold mb-0">Buku</h6>
+                            <h6 class="font-extrabold mb-0"> Buku</h6>
                         </div>
                     </div>
                 </div>
@@ -30,7 +29,7 @@
                         </div>
                         <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                             <h6 class="text-muted font-semibold">Jumlah Kategori</h6>
-                            <h6 class="font-extrabold mb-0">Kategori</h6>
+                            <h6 class="font-extrabold mb-0"> Kategori</h6>
                         </div>
                     </div>
                 </div>
@@ -47,7 +46,7 @@
                         </div>
                         <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                             <h6 class="text-muted font-semibold">Jumlah Member</h6>
-                            <h6 class="font-extrabold mb-0">Member</h6>
+                            <h6 class="font-extrabold mb-0"> Member</h6>
                         </div>
                     </div>
                 </div>
@@ -64,7 +63,7 @@
                         </div>
                         <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                             <h6 class="text-muted font-semibold">Jumlah Penerbit</h6>
-                            <h6 class="font-extrabold mb-0">Penerbit</h6>
+                            <h6 class="font-extrabold mb-0"> Penerbit</h6>
                         </div>
                     </div>
                 </div>
@@ -72,20 +71,19 @@
         </div>
     </div>
     
-    {{-- <div class="col-12 text-center mt-4">
+    <div class="col-12 text-center mt-4">
 
         @php
             use App\Models\Identitas;
             $identitas = Identitas::first();
 
         @endphp
-        <img src="{{ $identitas->foto ?? '/assets/images/not-found.png' }}" alt="" width="250" height="250"
-            class="mb-5">
+        <img src="{{ $identitas->foto ?? '/assets/images/logo/logo.png' }}" alt="" width="250" height="250" class="mb-5">
         <h5 class="mb-4">{{ $identitas->nama_app }}</h5>
         <h5 class="mb-4">{{ $identitas->email_app }}</h5>
         <h5 class="mb-4">{{ $identitas->no_hp }}</h5>
         <h5 class="mb-4">{{ $identitas->alamat_app }}</h5>
-    </div> --}}
+    </div>
 
 
     @endsection

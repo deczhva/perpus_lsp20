@@ -1,43 +1,45 @@
 @extends('layouts.admin')
-
 @section('content')
-    
-
     @if (session('status'))
-        <div class="alert alert-{{ session('status') }} alert-dismissible fade show">
+        <div class="alert alert-{{ session('status') }}">
             {{ session('message') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Kembali"></button>
         </div>
     @endif
-
-    <div class="section">
+    <div class="row">
+        
+        {{-- <div class="col-3">
+            <a href="{{ Route('user.peminjaman.form') }}" class="btn btn-primary float">Pinjam</a>
+        </div> --}}
+    </div>
+    <section class="section">
         <div class="card shadow">
             <div class="card-body">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>Data Anggota</h3>
-                        </div>
-                        <div class="col-12 col-md-6 order-md-2 order-first">
-                            <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                                <ol class="breadcrumb">
-                                    <button type="button" class="btn shadow btn-primary mb-3" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal"><i class="bi bi-plus"></i>
-                                    Tambah Anggota
-                                    </button>
-                                </ol>
-                            </nav>
+                <div class="page-heading">
+                    <div class="page-title">
+                        <div class="row">
+                            <div class="col-12 col-md-6 order-md-1 order-last">
+                                <h3>Data Anggota</h3>
+                            </div>
+                            <div class="col-12 col-md-6 order-md-2 order-first">
+                                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                                    <ol class="breadcrumb">
+                                        <button type="button" class="btn shadow btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-plus"></i>
+                                            Tambah Anggota
+                                        </button>
+                                    </ol>
+                                </nav>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Modal Add Data -->
+                
+                <!-- Modal ADD DATA -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Tambah Anggota</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Peserta Didik</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -96,36 +98,41 @@
                                             <textarea class="form-control" rows="3" name="alamat"></textarea>
                                         </div>
                                     </div>
+
+                                    {{-- foto --}}
+
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
-                                    <button type="submit" class="btn btn-primary">Tambah Anggota</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-                <!-- End Modal Add Data -->
+                <!-- Modal ADD DATA -->
 
-                {{-- Modal Edit  --}}
+                {{-- Modal EDIT  --}}
                 @foreach ($anggota as $a)
                     <div class="modal fade" id="update-anggota{{ $a->id }}" tabindex="-1"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Anggota</h1>
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
-                                <form action="{{ url('/admin/edit/anggota/' . $a->id) }}" method="POST"
+                                <form action="{{ route('admin.anggota.update', $a->id) }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
                                     @method('put')
                                     <div class="modal-body">
-
+                                        <center>
+                                            <img src="{{ $a->foto == null ? 'profile.png' : $a ->foto }}" class="rounded-circle" style="width: 150px; height: 150px" alt="Avatar" />
+                                        </center>
                                         <div class="mb-3">
-                                            <label for="formGroupExampleInput" class="form-label">NIS</label>
+                                            <label for="formGroupExampleInput" class="form-label">nis</label>
                                             <input type="text" class="form-control" id="formGroupExampleInput"
                                                 placeholder="" name="nis" value="{{ $a->nis }}" required>
                                         </div>
@@ -137,43 +144,43 @@
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="formGroupExampleInput" class="form-label">Username</label>
+                                            <label for="formGroupExampleInput" class="form-label">username</label>
                                             <input type="text" class="form-control" id="formGroupExampleInput"
                                                 placeholder="" name="username" value="{{ $a->username }}" required>
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="formGroupExampleInput" class="form-label">Kelas</label>
+                                            <label for="formGroupExampleInput" class="form-label">kelas</label>
                                             <input type="text" class="form-control" id="formGroupExampleInput"
                                                 placeholder="" name="kelas" value="{{ $a->kelas }}" required>
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="formGroupExampleInput" class="form-label">Alamat</label>
+                                            <label for="formGroupExampleInput" class="form-label">alamat</label>
                                             <input type="text" class="form-control" id="formGroupExampleInput"
                                                 placeholder="" value="{{ $a->alamat }}" name="alamat" required>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Kembali</button>
-                                        <button type="submit" class="btn btn-primary">Tambah Anggota</button>
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save changes</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
                 @endforeach
-                {{-- End Modal Edit --}}
+                {{-- Modal EDIT --}}
 
 
-                {{-- Modal Delete --}}
+                {{-- Modal DELETE --}}
                 @foreach ($anggota as $a)
                     <div class="modal fade modal-borderless" id="hapus-anggota{{ $a->id }}" tabindex="-1"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <form action={{ url('/admin/hapus/anggota/' . $a->id) }} method="POST"
+                                <form action={{ route('admin.anggota.delete', $a->id) }} method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
                                     @method('DELETE')
@@ -195,7 +202,7 @@
                         </div>
                     </div>
                 @endforeach
-                {{-- End Modal Delete --}}
+                {{-- Modal Delete --}}
 
                 <table class="table table-striped" id="table1">
                     <thead>
@@ -223,7 +230,7 @@
                                 <td>{{ $a->alamat }}</td>
 
                                 <td class="align-middle">
-                                    <form action="{{ route('admin.anggota.update', $a->id) }}" method="POST"
+                                    <form action="{{ route('admin.status.update', $a->id) }}" method="POST"
                                         style="display: inline-block">
                                         @csrf
                                         @method('PUT')
@@ -241,7 +248,7 @@
                                             class="bi bi-pencil-square"></i></button>
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#hapus-anggota{{ $a->id }}"><i
-                                            class="bi bi-trash3"></i></button>
+                                            class="bi bi-trash"></i></button>
                                 </td>
                             </tr>
                         @endforeach
@@ -249,5 +256,6 @@
                 </table>
             </div>
         </div>
+    </section>
     </div>
 @endsection
